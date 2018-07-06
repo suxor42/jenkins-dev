@@ -6,7 +6,16 @@ services:
       - "8080:8080"
     expose:
       - 50000
-  slave:
+  slave_jnlp:
+    image: jenkins/jnlp-slave
+    links:
+      - master
+    environment:
+      JENKINS_URL: http://master:8080/
+      JENKINS_SECRET: f86f516b0154e795fceb7e37d7b53144e7bd6d9c7e780506589891b043362fd1
+      JENKINS_AGENT_NAME: agent1
+      JNLP_PROTOCOL_OPTS: -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false
+  slave_ssh:
     build: "."
     expose:
       - 22
