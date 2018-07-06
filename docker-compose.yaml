@@ -1,0 +1,13 @@
+version: '3'
+services:
+  master:
+    image: jenkins/jenkins:2.121.1
+    ports:
+      - "8080:8080"
+    expose:
+      - 50000
+  slave:
+    build: "."
+    expose:
+      - 22
+
