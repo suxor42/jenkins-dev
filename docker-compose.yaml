@@ -7,6 +7,10 @@ services:
     expose:
       - 50000
   slave_jnlp:
+    # Create a slave in jenkins first then
+    # add the correct values for secret and
+    # agent name. Configure the hostname in
+    # jenkins to be master
     image: jenkins/jnlp-slave
     links:
       - master
